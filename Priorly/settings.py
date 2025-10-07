@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'cuentas',
     'apuntes',
     'flashcard',
+    'calendario',
 ]
 
 MIDDLEWARE = [
