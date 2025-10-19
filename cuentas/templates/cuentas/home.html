@@ -42,14 +42,17 @@
 </style>
 {% if user.is_authenticated %}
     <div class="logo">¡Bienvenido a Priorly!</div>
+<div>
+    <a href="/sign/signout" class="start-button">Cerrar sesión</a>
+</div>
 
 {% else %}
     <div class="logo">¡Bienvenido a Priorly!</div>
 
 
 <div style="display: flex; gap: 20px;">
-    <a href="/signup/crear" class="start-button">Registrarse</a>
-    <a href="/signin" class="start-button">Iniciar Sesión</a>
+    <a href="/sign/crear" class="start-button">Registrarse</a>
+    <a href="/sign/signin" class="start-button">Iniciar Sesión</a>
 </div>
 {% endif %}
 
