@@ -22,4 +22,5 @@ urlpatterns = [
     path('',include('cuentas.urls')),
     path('apuntes/',include('apuntes.urls')),
     path('calendario/',include('calendario.urls')),
+    path('signup/', include('cuentas.urls'))
 ]

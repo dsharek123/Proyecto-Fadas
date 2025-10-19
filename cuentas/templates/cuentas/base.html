@@ -1,6 +1,12 @@
-{% extends 'cuentas/base.html' %}
-{% block content %}
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a priorly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <style>
     body {
         font-family: 'Baloo 2', sans-serif;
         background-color: #1e1e1e;
@@ -40,18 +46,13 @@
     }
 
 </style>
-{% if user.is_authenticated %}
-    <div class="logo">¡Bienvenido a Priorly!</div>
 
-{% else %}
-    <div class="logo">¡Bienvenido a Priorly!</div>
+</head>
+<body>
 
 
-<div style="display: flex; gap: 20px;">
-    <a href="/signup/crear" class="start-button">Registrarse</a>
-    <a href="/signin" class="start-button">Iniciar Sesión</a>
-</div>
-{% endif %}
-
-
-{% endblock %}
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
