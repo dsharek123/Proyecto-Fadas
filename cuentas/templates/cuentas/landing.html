@@ -1,0 +1,18 @@
+{% extends 'cuentas/base.html' %}
+
+{% block title %}Priorly | Organiza tu estudio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div>
+        <h1 class="hero-title">Organiza tu aprendizaje con Priorly</h1>
+        <p class="hero-subtitle">Centraliza apuntes, flashcards y tu calendario académico en un solo lugar. Priorly te ayuda a concentrarte en lo importante para que puedas avanzar con claridad.</p>
+        <div class="hero-actions">
+            <a href="{% url 'signup' %}" class="btn btn-primary">Comenzar ahora</a>
+            <a href="{% url 'signin' %}" class="btn btn-outline-light">Ya tengo cuenta</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-light">Conoce sobre nosotros</a>
+        </div>
+    </div>
+    <div class="hero-illustration" aria-hidden="true"></div>
+</section>
+{% endblock %}
