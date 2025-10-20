@@ -3,7 +3,6 @@ from .forms import ApunteForm
 from .models import Apunte
 from django.contrib.auth.decorators import login_required
 
-@login_required
 def crear_apunte(request):
     if request.method == 'POST':
         form = ApunteForm(request.POST)
