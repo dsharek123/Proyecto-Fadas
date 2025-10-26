@@ -1,0 +1,10 @@
+{% block contenido %}
+<h2>Eliminar Tema</h2>
+<p>¿Seguro que quieres eliminar "<strong>{{ tema.tema }}</strong>"?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <button>Sí, eliminar</button>
+  <a href="{% url 'vista_calendario' %}">Cancelar</a>
+</form>
+{% endblock %}
