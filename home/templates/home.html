@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio | Priorly</title>
+    <style>
+        body {
+            background-color: #0f172a;
+            color: #fff;
+            font-family: system-ui, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .panel {
+            background: #1e293b;
+            width: 340px;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0 0 .5rem;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin: 0 0 1.5rem;
+            color: #94a3b8;
+            font-size: .9rem;
+        }
+
+        .menu {
+            display: grid;
+            gap: .8rem;
+        }
+
+        .menu a {
+            display: block;
+            text-decoration: none;
+            background: #334155;
+            color: #fff;
+            padding: .8rem 1rem;
+            border-radius: .5rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all .15s;
+        }
+
+        .menu a:hover {
+            background: #475569;
+            border-color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>Bienvenido a Priorly 📚</h1>
+        <p>Selecciona una sección:</p>
+
+        <div class="menu">
+            <a href="/apuntes/crear/">Apuntes</a>
+            <a href="/calendario/">Calendario</a>
+            <a href="/flashcard/">Flashcards</a>
+            <a href="/cuentas/">Cuenta / Perfil</a>
+        </div>
+    </div>
+</body>
+</html>
