@@ -1,10 +1,19 @@
 
 html {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Poppins", sans-serif;
+    background-color: #ffffff;
 }
 
-.fc-event-title {
-    border-radius: 0.5rem;
+.fc-event{
     cursor: pointer;
 }
+
+.fc-day{
+    transition: box-shadow 0.3s ease;
+}
+
+.fc-day:hover {
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.3);
+}
+
 
