@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'apuntes',
     'flashcard',
     'calendario',
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -129,6 +130,6 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_URL = '/sign/'
-LOGIN_REDIRECT_URL = '/sign/'            
-LOGOUT_REDIRECT_URL = '/sign/'
+LOGIN_URL = '/cuentas/sigin'
+LOGIN_REDIRECT_URL = '/home/'            
+LOGOUT_REDIRECT_URL = '/cuentas/signin'

@@ -51,7 +51,7 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('home')    
+            return redirect('dashboard')    
         
         
 @login_required
