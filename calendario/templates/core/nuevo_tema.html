@@ -1,25 +1,33 @@
-<div>
-  <h2>Nuevo Tema</h2>
-  <form method="post">
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h2>Nuevo Tema</h2>
+
+{% if error %}
+<div class="error">{{ error }}</div>
+{% endif %}
+
+<form method="post">
     {% csrf_token %}
+    
     <div>
-      <label for="tema">Tema</label><br />
-      <input type="text" name="tema" id="tema" required />
+        <label for="tema">Tema:</label>
+        <input type="text" id="tema" name="tema" required>
     </div>
+    
+    <div>
+        <label for="actividad">Actividad:</label>
+        <input type="text" id="actividad" name="actividad">
+    </div>
+    
+    <div>
+        <label for="fecha">Fecha y Hora:</label>
+        <input type="datetime-local" id="fecha" name="fecha" 
+               value="{{ fecha_inicial }}">
+    </div>
+    
+    <button type="submit">Guardar</button>
+    <a href="{% url 'vista_calendario' %}">Cancelar</a>
+</form>
 
-    <div>
-      <label for="actividad">Actividad</label><br />
-      <input type="text" name="actividad" id="actividad" />
-    </div>
-
-    <div>
-      <label for="fecha">Fecha</label><br />
-      <input type="date" name="fecha" id="fecha" value="{{ fecha_inicial }}" />
-    </div>
-
-    <div>
-      <button type="submit">Guardar</button>
-      <a href="{% url 'vista_calendario' %}">Clancelar</a>
-    </div>
-  </form>
-</div>
+{% endblock %}

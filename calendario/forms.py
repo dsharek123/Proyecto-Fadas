@@ -6,12 +6,15 @@ class TemaForm(forms.ModelForm):
         model = Tema
         fields = ['tema', 'actividad', 'fecha']
         widgets = {
-            'fecha': forms.DateInput(
-                attrs={'type': 'date'},
-                format='%Y-%m-%d'
+            'fecha': forms.DateTimeInput(
+                attrs={
+                    'type': 'datetime-local',
+                    'class': 'form-control'
+                },
+                format='%Y-%m-%dT%H:%M'
             ),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['fecha'].input_formats = ['%Y-%m-%d']
+        self.fields['fecha'].input_formats = ['%Y-%m-%dT%H:%M']

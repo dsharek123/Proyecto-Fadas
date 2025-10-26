@@ -16,20 +16,42 @@
       initialView: "dayGridMonth",
       locale: "es",
       selectable: true,
-      buttonText: {
-        today: "Hoy",
+      selectLongPressDelay: 0,
+      firstDay: 1,
+      navLinks: true,
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
 
+      buttonText: {
+        today: "Hoy",
+        month: "Mes",
+        week: "Semana",
+        day: "Día"
+      },
+      
+      allDaySlot: false,
+      slotMinTime: "06:00:00",
+      slotMaxTime: "22:00:00",
       events: temas,
 
       select: function (info) {
-        window.location.href = "/calendario/nuevo_tema/?fecha=" + info.startStr;
+        var fechaSeleccionada = info.startStr;
+        window.location.href = "/calendario/nuevo_tema/?fecha=" + fechaSeleccionada;
       },
 
       eventClick: function (info) {
         var id = info.event.id;
         window.location.href = "/calendario/editar_tema/" + id + "/";
       },
+      
+      eventTimeFormat: {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      }
     });
     calendar.render();
   });

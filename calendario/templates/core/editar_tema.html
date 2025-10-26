@@ -1,12 +1,13 @@
+{% extends 'base.html' %}
+
 {% block contenido %}
 <h2>Editar Tema</h2>
+
 <form method="post">
-  {% csrf_token %} {{ form.as_p }}
-  <button type="submit">Guardar</button>
-  <a href="{% url 'vista_calendario' %}">Cancelar</a>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+    <a href="{% url 'vista_calendario' %}">Cancelar</a>
 </form>
 
-<hr />
-
-<a href="{% url 'eliminar_tema' tema.id %}">Eliminar</a>
 {% endblock %}
