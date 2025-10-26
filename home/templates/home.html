@@ -1,74 +1,251 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Inicio | Priorly</title>
+    <title>Priorly | Home</title>
+
     <style>
+        /* ----- RESET BÁSICO ----- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background-color: #0f172a;
             color: #fff;
-            font-family: system-ui, sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             min-height: 100vh;
-            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ----- NAVBAR SUPERIOR ----- */
+        .navbar {
+            width: 100%;
+            background-color: #000; /* negro sólido */
+            border-bottom: 1px solid rgba(255,255,255,0.08);
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.5rem;
         }
 
-        .panel {
-            background: #1e293b;
-            width: 340px;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            text-align: center;
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
-        h1 {
-            margin: 0 0 .5rem;
-            font-size: 1.3rem;
+        .brand {
+            color: rgb(168, 85, 247); /* morado */
+            font-weight: 600;
+            font-size: 1.25rem;
         }
 
-        p {
-            margin: 0 0 1.5rem;
-            color: #94a3b8;
-            font-size: .9rem;
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
 
-        .menu {
-            display: grid;
-            gap: .8rem;
-        }
-
-        .menu a {
-            display: block;
-            text-decoration: none;
-            background: #334155;
+        .nav-links a {
             color: #fff;
-            padding: .8rem 1rem;
-            border-radius: .5rem;
-            font-weight: 500;
-            border: 1px solid transparent;
-            transition: all .15s;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: color .15s;
         }
 
-        .menu a:hover {
-            background: #475569;
-            border-color: #94a3b8;
+        .nav-links a.active {
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #bbb;
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            background-color: #38bdf8;
+            color: #000;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            font-size: 1rem;
+            font-weight: bold;
+            border: 2px solid #000;
+        }
+
+        /* ----- CONTENEDOR PRINCIPAL DE TARJETAS ----- */
+        .cards-wrapper {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            min-height: 0;
+            max-height: calc(100vh - 60px); /* altura menos la navbar */
+        }
+
+        /* cada tarjeta ocupa una columna */
+        .card-link {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            display: block;
+            overflow: hidden;
+            min-height: 320px;
+        }
+
+        /* imagen de fondo */
+        .card-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4); /* oscurece un poco para que resalte el texto */
+            transition: filter .2s, transform .2s;
+        }
+
+        /* capa oscura extra (gradiente), ayuda a lectura */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.3) 0%,
+                rgba(0,0,0,0.6) 60%,
+                rgba(0,0,0,0.75) 100%
+            );
+        }
+
+        /* texto dentro de la tarjeta */
+        .card-content {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .card-title {
+            font-size: clamp(1.8rem, 2vw, 2.4rem);
+            line-height: 1.2;
+            font-weight: 300;
+            color: #fff;
+        }
+
+        /* separador visual entre columnas */
+        .card-link:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 1px;
+            height: 100%;
+            background: rgba(255,255,255,0.15);
+        }
+
+        /* hover */
+        .card-link:hover .card-bg {
+            filter: brightness(0.6);
+            transform: scale(1.03);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 900px) {
+            .cards-wrapper {
+                grid-template-columns: 1fr;
+                max-height: unset;
+            }
+
+            .card-link:not(:last-child)::after {
+                display: none;
+            }
+
+            .card-bg {
+                filter: brightness(0.5);
+            }
+
+            .card-link {
+                min-height: 240px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="panel">
-        <h1>Bienvenido a Priorly 📚</h1>
-        <p>Selecciona una sección:</p>
 
-        <div class="menu">
-            <a href="/apuntes/crear/">Apuntes</a>
-            <a href="/calendario/">Calendario</a>
-            <a href="/flashcard/">Flashcards</a>
-            <a href="/cuentas/">Cuenta / Perfil</a>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <div class="brand">Priorly</div>
+
+            <nav class="nav-links">
+                <!-- cambia los href a tus urls reales -->
+                <a href="/home/" class="active">Home</a>
+                <a href="#">Sobre nosotros</a>
+                <a href="#">Configuracion</a>
+                <a href="/cuentas/signout/">Cerrar sesión</a>
+            </nav>
         </div>
-    </div>
+
+        <div class="navbar-right">
+            <span>Bienvenido {{ request.user.username }}</span>
+            <div class="avatar">
+                <!-- icono tipo usuario -->
+                <span>👤</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- TARJETAS -->
+    <main class="cards-wrapper">
+
+        <!-- APUNTES -->
+        <a class="card-link" href="/apuntes/crear/">
+            <div class="card-bg"
+                 style="background-image: url('{% static 'home/apuntes.jpg' %}');">
+            </div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <div class="card-title">Apuntes</div>
+            </div>
+        </a>
+
+        <!-- FLASHCARD -->
+        <a class="card-link" href="/flashcard/">
+            <div class="card-bg"
+                 style="background-image: url('{% static 'home/flashcard.jpg' %}');">
+            </div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <div class="card-title">Flashcard</div>
+            </div>
+        </a>
+
+        <!-- CALENDARIO -->
+        <a class="card-link" href="/calendario/">
+            <div class="card-bg"
+                 style="background-image: url('{% static 'home/calendario.jpg' %}');">
+            </div>
+            <div class="card-overlay"></div>
+            <div class="card-content">
+                <div class="card-title">Calendario</div>
+            </div>
+        </a>
+
+    </main>
+
 </body>
 </html>
