@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block titulo %}Mi página{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'core/calendario.css' %}" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.css"
+      rel="stylesheet"
+    />
+
+    {% block estilos_extra %}{% endblock %}
+  </head>
+
+  <body>
+    {% block contenido %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
+    {% block scripts_extra %}{% endblock %}
+  </body>
+</html>

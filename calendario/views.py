@@ -4,7 +4,6 @@ from .models import Tema
 import json
 from .forms import TemaForm
 
-# Create your views here.
 
 @login_required
 def vista_calendario(request):
@@ -20,20 +19,17 @@ def vista_calendario(request):
         })
     return render(request, 'core/calendario.html', {'temas_json': json.dumps(temas_list)})
 
-@login_required
 def nuevo_tema(request):
     if request.method == 'POST':
         tema_text = request.POST.get('tema', '').strip()
         actividad = request.POST.get('actividad', '').strip()
-        fecha = request.POST.get('fecha') or None  # formato YYYY-MM-DD desde input[type=date]
+        fecha = request.POST.get('fecha') or None
 
         if tema_text:
             Tema.objects.create(tema=tema_text, actividad=actividad, fecha=fecha)
-            return redirect('vista_calendario')  # nombre de la url del calendario
-        # si falta tema, volver a mostrar con error simple
+            return redirect('vista_calendario')
         return render(request, 'core/nuevo_tema.html', {'error': 'El campo Tema es obligatorio.', 'fecha_inicial': fecha})
 
-    # GET
     fecha_inicial = request.GET.get('fecha', '')
     return render(request, 'core/nuevo_tema.html', {'fecha_inicial': fecha_inicial})
 
@@ -53,5 +49,4 @@ def eliminar_tema(request, tema_id):
     if request.method == 'POST':
         tema.delete()
         return redirect('vista_calendario')
-    # si es GET mostramos la plantilla de confirmación
     return render(request, 'core/eliminar_tema.html', {'tema': tema})

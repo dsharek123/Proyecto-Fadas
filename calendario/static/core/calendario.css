@@ -1,0 +1,10 @@
+
+html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.fc-event-title {
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
