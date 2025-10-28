@@ -5,7 +5,16 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: #f7f9fd;
+  background-color:  #0f172a;
+}
+#go-home {
+  font-size: 1em;
+  background-color: rgb(168, 85, 247);
+  color: #ffffff;
+  padding: 0.8em 1.2em;
+  font-weight: 500;
+  border-radius: 0.4em;
+  text-decoration: none;
 }
 .container {
   width: 90vw;
@@ -15,7 +24,7 @@ body {
 }
 .add-flashcard-con {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 1.2em 1em;
 }
 button {
@@ -25,7 +34,7 @@ button {
 }
 .add-flashcard-con button {
   font-size: 1em;
-  background-color: #587ef4;
+  background-color: rgb(168, 85, 247);
   color: #ffffff;
   padding: 0.8em 1.2em;
   font-weight: 500;
@@ -71,7 +80,7 @@ button {
 }
 .fa-xmark {
   font-size: 1.4em;
-  background-color: #587ef4;
+  background-color: rgb(168, 85, 247);
   height: 1.8em;
   width: 1.8em;
   display: grid;
@@ -103,7 +112,7 @@ textarea:focus {
 }
 #save-btn {
   font-size: 1em;
-  background-color: #587ef4;
+  background-color: rgb(168, 85, 247);
   color: #ffffff;
   padding: 0.6em 0;
   border-radius: 0.3em;
@@ -137,7 +146,7 @@ textarea:focus {
 }
 .show-hide-btn {
   display: block;
-  background-color: #587ef4;
+  background-color: rgb(168, 85, 247);
   color: #ffffff;
   text-decoration: none;
   text-align: center;
@@ -155,7 +164,7 @@ textarea:focus {
   font-size: 1.2em;
 }
 .edit {
-  color: #587ef4;
+  color: rgb(168, 85, 247);
 }
 .delete {
   color: #ff5353;

@@ -1,61 +1,71 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="es">
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flashcard</title>
-    
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    />
-    
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    
-    <link rel="stylesheet" href="{% static 'flashcard.css' %}" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'flashcard.css' %}?v=2" />
+</head>
+<body>
+    <form method="POST" id="main-form" class="hide">
+        {% csrf_token %}
+        <input type="hidden" name="pregunta" id="hidden-pregunta">
+        <input type="hidden" name="respuesta" id="hidden-respuesta">
+        <input type="hidden" name="action" id="hidden-action" value="create">
+        <input type="hidden" name="card_id" id="hidden-card-id">
+    </form>
+
     <div class="container">
-      <div class="add-flashcard-con">
-        <button id="add-flashcard">Agregar Flashcard</button>
-      </div>
-      
-      <div id="card-con">
-        <div class="card-list-container"></div>
-      </div>
+        <div class="add-flashcard-con">
+            <a href="{%url 'dashboard'%}" id="go-home">Volver al inicio</a>
+            <button id="add-flashcard">Agregar Flashcard</button>
+        </div>
+        
+        <div id="card-con">
+            <div class="card-list-container">
+                {% for flashcard in flashcards %}
+                <div class="card" data-id="{{ flashcard.id }}">
+                    <p class="question-div">{{ flashcard.pregunta }}</p>
+                    <p class="answer-div hide">{{ flashcard.respuesta }}</p>
+                    <a href="#" class="show-hide-btn">Mostrar/Ocultar Respuesta</a>
+                    <div class="buttons-con">
+                        <button class="edit" data-id="{{ flashcard.id }}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="delete" data-id="{{ flashcard.id }}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="card">
+                    <p class="question-div">No hay flashcards aún</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
     
     <div class="question-container hide" id="add-question-card">
-      <h2>Crear Flashcard</h2>
-      <div class="wrapper">
-        <div class="error-con">
-          <span class="hide" id="error">¡Los campos no pueden estar vacíos!</span>
+        <h2 id="modal-title">Crear Flashcard</h2>
+        <div class="wrapper">
+            <div class="error-con">
+                <span class="hide" id="error">¡Los campos no pueden estar vacíos!</span>
+            </div>
+            <i class="fa-solid fa-xmark" id="close-btn"></i>
         </div>
-        <i class="fa-solid fa-xmark" id="close-btn"></i>
-      </div>
-      
-      <label for="question">Pregunta:</label>
-      <textarea
-        class="input"
-        id="question"
-        placeholder="Escribe la pregunta aquí..."
-        rows="2"
-      ></textarea>
-      
-      <label for="answer">Respuesta:</label>
-      <textarea
-        class="input"
-        id="answer"
-        rows="4"
-        placeholder="Escribe la respuesta aquí..."
-      ></textarea>
-      
-      <button id="save-btn">Guardar</button>
+        
+        <label for="question">Pregunta:</label>
+        <textarea class="input" id="question" placeholder="Escribe la pregunta aquí..." rows="2"></textarea>
+        
+        <label for="answer">Respuesta:</label>
+        <textarea class="input" id="answer" rows="4" placeholder="Escribe la respuesta aquí..."></textarea>
+        
+        <button id="save-btn">Guardar</button>
     </div>
     
-    <script src="{% static 'flashcard.js' %}"></script>
-  </body>
+    <script src="{% static 'flashcard.js' %}?v=2"></script>
+</body>
 </html>
