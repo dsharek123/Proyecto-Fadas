@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Tema
 import json
 from .forms import TemaForm
-from django.utils import timezone
 import datetime
 
 @login_required

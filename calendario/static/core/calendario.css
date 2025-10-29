@@ -16,4 +16,15 @@ html {
     box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.3);
 }
 
-
+#link-inicio {
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  font-size: 1em;
+  background-color: rgb(168, 85, 247);
+  color: #ffffff;
+  padding: 0.8em 1.2em;
+  font-weight: 500;
+  border-radius: 0.4em;
+  text-decoration: none
+}
