@@ -43,11 +43,11 @@ def signin(request):
         return render(request, 'cuentas/signin.html', {
         })
     else:
-        user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
+        user = authenticate(request, username=request.POST['Usuario'], password=request.POST['Contraseña'])
         
         if user is None:
             return render(request, 'cuentas/signin.html', {
-                'error': 'Username o password is incorrect'
+                'error': 'Usuario o Contraseña son incorrectos'
             })
         else:
             login(request, user)

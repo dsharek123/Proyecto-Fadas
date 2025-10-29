@@ -14,3 +14,6 @@ def crear_apunte(request):
     else:
         form = ApunteForm()
     return render(request, 'apuntes/crear_apunte.html', {'form':form})
+
+def seleccion_apuntes(request):
+    return render(request, 'apuntes/seleccion_apuntes.html')
