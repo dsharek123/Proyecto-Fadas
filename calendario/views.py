@@ -7,7 +7,7 @@ import datetime
 
 @login_required
 def vista_calendario(request):
-    temas_qs = Tema.objects.all()
+    temas_qs = Tema.objects.filter(usuario=request.user)
     temas_list = []
     for t in temas_qs:
         if not getattr(t, 'fecha', None):
@@ -24,6 +24,15 @@ def nuevo_tema(request):
         tema_text = request.POST.get('tema', '').strip()
         actividad = request.POST.get('actividad', '').strip()
         fecha_str = request.POST.get('fecha')
+        
+        form = TemaForm(request.POST)
+        if form.is_valid():
+            tema = form.save(commit=False)
+            tema.usuario = request.user
+            tema.save()
+            return redirect('vista_calendario')
+        else:
+            form = TemaForm()
         
         fecha = None
         if fecha_str:
