@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ apunte.titulo }} - Priorly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            font-family: 'Baloo 2', sans-serif;
+            padding: 40px;
+        }
+        h1 {
+            color: #8e44ad;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #ccc;
+            font-size: 16px;
+            white-space: pre-wrap;
+        }
+        .fecha {
+            color: #888;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .boton-volver {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+            background-color: #8e44ad;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .boton-volver:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(142, 68, 173, 0.4);
+        }
+        
+        .boton-eliminar {
+            background-color: red;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transfrom 0.3s ease;
+        }
+        .boton-eliminar:hover {
+            background-color: #c0392b;
+            transform: translateY(-4px);
+        }
+    
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'apuntes_creados' %}" class="boton-volver">⬅ Volver a Mis Apuntes</a>
+
+    <h1>{{ apunte.titulo }}</h1>
+    <p>{{ apunte.contenido }}</p>
+    <div class="fecha">Creado el {{ apunte.creado|date:"d/m/Y H:i" }}</div>
+
+    <form action="{% url 'eliminar_apunte' apunte.id %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" class="boton-eliminar" onclick="return confirm('¿Seguro que deseas eliminar este apunte?');">
+        🗑️ Eliminar Apunte
+    </button>
+</form>
+
+</body>
+</html>
