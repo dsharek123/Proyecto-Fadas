@@ -19,7 +19,7 @@ def signup(request):
                 password = request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('home')
+                return redirect('inicio')
             
             except:
                 return render(request, 'cuentas/signup.html',{
@@ -51,7 +51,7 @@ def signin(request):
             })
         else:
             login(request, user)
-            return redirect('dashboard')    
+            return redirect('inicio')    
         
         
 @login_required
