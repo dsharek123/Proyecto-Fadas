@@ -1,0 +1,98 @@
+
+html {
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: white;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+    min-height: 100vh;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h2 {
+    color: white;
+    font-weight: 600;
+    font-size: 2.2em;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+form {
+    background-color: #1e293b;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 12px 30px rgba(143, 60, 60, 0.3);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+p {
+    color: white;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+strong {
+    color: #f87171;
+}
+
+.botones-form {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+button[type="submit"] {
+    background-color: rgba(239, 68, 68, 0.1);
+    border: 2px solid #ef4444;
+    color: #f87171;
+    font-weight: 500;
+    padding: 16px 32px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    flex: 1;
+}
+
+button[type="submit"]:hover {
+    background-color: rgba(239, 68, 68, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+}
+
+.btn-cancelar {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #a855f7;
+    color: #a855f7;
+    font-weight: 500;
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: "Poppins", sans-serif;
+    font-size: 18px;
+    text-align: center;
+    flex: 1;
+}
+
+.btn-cancelar:hover {
+    background-color: rgba(168, 85, 247, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(168, 85, 247, 0.3);
+}

@@ -1,17 +1,66 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editar Evento</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'core/editar_tema.css' %}" />
+  </head>
+  <body>
+    {% block contenido %}
+    <div class="contenedor">
+      <h2>Editar Evento</h2>
 
-{% block contenido %}
-<h2>Editar Tema</h2>
+      <form method="post">
+        {% csrf_token %}
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar Cambios</button>
-    <a href="{% url 'vista_calendario' %}">Cancelar</a>
-</form>
+        <div>
+          <label for="id_tema">Evento:</label>
+          <input
+            type="text"
+            id="id_tema"
+            name="tema"
+            value="{{ form.tema.value }}"
+            required
+          />
+        </div>
 
-<hr />
+        <div>
+          <label for="id_actividad">Actividad:</label>
+          <textarea id="id_actividad" name="actividad" rows="4">
+{{ form.actividad.value }}</textarea
+          >
+        </div>
 
-<a href="{% url 'eliminar_tema' tema.id %}">Eliminar</a>
+        <div>
+          <label for="id_fecha">Fecha y Hora:</label>
+          <input
+            type="datetime-local"
+            id="id_fecha"
+            name="fecha"
+            value="{{ form.fecha.value|date:'Y-m-d\TH:i' }}"
+          />
+        </div>
 
-{% endblock %}
+        <div class="botones-form">
+          <button type="submit">Guardar Cambios</button>
+          <a href="{% url 'vista_calendario' %}" class="btn-cancelar"
+            >Cancelar</a
+          >
+        </div>
+      </form>
+
+      <div class="seccion-eliminar">
+        <a href="{% url 'eliminar_tema' tema.id %}" class="eliminar-link"
+          >Eliminar Tema</a
+        >
+      </div>
+    </div>
+    {% endblock %}
+  </body>
+</html>

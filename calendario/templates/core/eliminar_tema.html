@@ -1,10 +1,33 @@
-{% block contenido %}
-<h2>Eliminar Tema</h2>
-<p>¿Seguro que quieres eliminar "<strong>{{ tema.tema }}</strong>"?</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eliminar Tema</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'core/eliminar_tema.css' %}" />
+  </head>
+  <body>
+    {% block contenido %}
+    <div class="contenedor">
+      <h2>Eliminar Tema</h2>
 
-<form method="post">
-  {% csrf_token %}
-  <button>Sí, eliminar</button>
-  <a href="{% url 'vista_calendario' %}">Cancelar</a>
-</form>
-{% endblock %}
+      <form method="post">
+        {% csrf_token %}
+        <p>¿Seguro que quieres eliminar "<strong>{{ tema.tema }}</strong>"?</p>
+
+        <div class="botones-form">
+          <button type="submit">Sí, eliminar</button>
+          <a href="{% url 'vista_calendario' %}" class="btn-cancelar"
+            >Cancelar</a
+          >
+        </div>
+      </form>
+    </div>
+    {% endblock %}
+  </body>
+</html>

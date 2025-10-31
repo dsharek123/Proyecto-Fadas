@@ -1,63 +1,89 @@
-{% extends 'base.html' %}{% block contenido %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendario Priorly</title>
 
-<link
-  href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.css"
-  rel="stylesheet"
-/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
-<div id="calendar"></div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.css"
+      rel="stylesheet"
+    />
 
-<a href="{% url 'dashboard' %}"  id="link-inicio">Volver al inicio</a>
+    <link rel="stylesheet" href="{% static 'core/calendario.css' %}?v=3" />
+  </head>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    var calendarEl = document.getElementById("calendar");
-    var temas = JSON.parse("{{ temas_json|escapejs }}");
+  <body>
+    <div id="calendar"></div>
 
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      initialView: "dayGridMonth",
-      locale: "es",
-      selectable: true,
-      selectLongPressDelay: 0,
-      firstDay: 1,
-      navLinks: true,
-      headerToolbar: {
-        left: 'prev,next today',
-        center: 'title',
-        right: ''
-      },
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.19/index.global.min.js"></script>
 
-      buttonText: {
-        today: "Hoy",
-        month: "Mes",
-        week: "Semana",
-        day: "Día"
-      },
-      
-      allDaySlot: false,
-      slotMinTime: "06:00:00",
-      slotMaxTime: "22:00:00",
-      events: temas,
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var temas = JSON.parse("{{ temas_json|escapejs }}");
 
-      select: function (info) {
-        var fechaSeleccionada = info.startStr;
-        window.location.href = "/calendario/nuevo_tema/?fecha=" + fechaSeleccionada;
-      },
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: "dayGridMonth",
+          locale: "es",
+          selectable: true,
+          selectLongPressDelay: 0,
+          firstDay: 1,
+          navLinks: false,
+          dayMaxEvents: true,
 
-      eventClick: function (info) {
-        var id = info.event.id;
-        window.location.href = "/calendario/editar_tema/" + id + "/";
-      },
-      
-      eventTimeFormat: {
-        hour: '2-digit',
-        minute: '2-digit',
-        hour12: false
-      }
-    });
-    calendar.render();
-  });
-</script>
+          headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "inicio",
+          },
 
-{% endblock %}
+          customButtons: {
+            inicio: {
+              text: "Volver al inicio",
+              click: function () {
+                window.location.href = "{% url 'dashboard' %}";
+              },
+            },
+          },
+
+          buttonText: {
+            today: "Hoy",
+            month: "Mes",
+            week: "Semana",
+            day: "Día",
+          },
+
+          allDaySlot: false,
+          slotMinTime: "06:00:00",
+          slotMaxTime: "22:00:00",
+          events: temas,
+
+          select: function (info) {
+            var fechaSeleccionada = info.startStr;
+            window.location.href =
+              "/calendario/nuevo_tema/?fecha=" + fechaSeleccionada;
+          },
+
+          eventClick: function (info) {
+            var id = info.event.id;
+            window.location.href = "/calendario/editar_tema/" + id + "/";
+          },
+
+          eventTimeFormat: {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          },
+        });
+        calendar.render();
+      });
+    </script>
+  </body>
+</html>

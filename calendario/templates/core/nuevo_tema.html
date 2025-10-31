@@ -1,33 +1,59 @@
-{% extends 'base.html' %}
+{% load static %}
 
-{% block contenido %}
-<h2>Nuevo Tema</h2>
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Evento</title>
 
-{% if error %}
-<div class="error">{{ error }}</div>
-{% endif %}
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
-<form method="post">
-    {% csrf_token %}
-    
-    <div>
-        <label for="tema">Tema:</label>
-        <input type="text" id="tema" name="tema" required>
+    <link rel="stylesheet" href="{% static 'core/nuevo_tema.css' %}" />
+  </head>
+  <body>
+    {% block contenido %}
+    <div class="contenedor">
+      <h2>Nuevo Evento</h2>
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <div>
+          <label for="tema">Evento:</label>
+          <input type="text" id="tema" name="tema" required />
+        </div>
+
+        <div>
+          <label for="actividad">Actividad:</label>
+          <textarea id="actividad" name="actividad" rows="4"></textarea>
+        </div>
+
+        <div>
+          <label for="fecha">Fecha y Hora:</label>
+          <input
+            type="datetime-local"
+            id="fecha"
+            name="fecha"
+            value="{{ fecha_inicial }}"
+          />
+        </div>
+
+        <div class="botones-form">
+          <button type="submit">Guardar</button>
+          <a href="{% url 'vista_calendario' %}" class="btn-cancelar"
+            >Cancelar</a
+          >
+        </div>
+      </form>
     </div>
-    
-    <div>
-        <label for="actividad">Actividad:</label>
-        <input type="text" id="actividad" name="actividad">
-    </div>
-    
-    <div>
-        <label for="fecha">Fecha y Hora:</label>
-        <input type="datetime-local" id="fecha" name="fecha" 
-               value="{{ fecha_inicial }}">
-    </div>
-    
-    <button type="submit">Guardar</button>
-    <a href="{% url 'vista_calendario' %}">Cancelar</a>
-</form>
-
-{% endblock %}
+    {% endblock %}
+  </body>
+</html>
