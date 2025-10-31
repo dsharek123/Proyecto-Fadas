@@ -192,18 +192,16 @@
             <div class="brand">Priorly</div>
 
             <nav class="nav-links">
-                <!-- cambia los href a tus urls reales -->
                 <a href="/inicio/" class="active">Inicio</a>
                 <a href="#">Sobre nosotros</a>
                 <a href="#">Configuracion</a>
-                <a href="/cuentas/signout/">Cerrar sesión</a>
+                <a href="{% url 'cerrar_sesion' %}">Cerrar sesión</a>
             </nav>
         </div>
 
         <div class="navbar-right">
             <span>Bienvenido {{ request.user.username }}</span>
             <div class="avatar">
-                <!-- icono tipo usuario -->
                 <span>👤</span>
             </div>
         </div>
