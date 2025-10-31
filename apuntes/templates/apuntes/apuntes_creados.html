@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Apuntes - Priorly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: white;
+            font-family: 'Baloo 2', sans-serif;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #8e44ad;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .boton-volver {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+            background-color: #8e44ad;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .boton-volver:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(142, 68, 173, 0.4);
+        }
+
+        .grid-apuntes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .apunte-card {
+            background-color: #2c2c2c;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .apunte-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(142,68,173,0.4);
+        }
+
+        .apunte-card h2 {
+            color: #8e44ad;
+            font-size: 25px;
+            margin: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mis Apuntes</h1>
+
+    <a href="{% url 'seleccion_apuntes' %}" class="boton-volver">Volver al menú</a>
+
+    <div class="grid-apuntes">
+        {% for apunte in apuntes %}
+            <a href="{% url 'detalle_apunte' apunte.id %}" class="apunte-card">
+                <h2>{{ apunte.titulo }}</h2>
+            </a>
+        {% empty %}
+            <p>No has creado apuntes aún.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

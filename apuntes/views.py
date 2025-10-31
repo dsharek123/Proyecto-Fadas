@@ -17,3 +17,18 @@ def crear_apunte(request):
 
 def seleccion_apuntes(request):
     return render(request, 'apuntes/seleccion_apuntes.html')
+
+def apuntes_creados(request):
+    apuntes = Apunte.objects.filter(usuario=request.user).order_by('-creado')
+    return render(request, 'apuntes/apuntes_creados.html',{'apuntes':apuntes})
+
+def eliminar_apunte(request, apunte_id):
+    apunte = get_object_or_404(Apunte, id=apunte_id, usuario=request.user)
+    if request.method == 'POST':
+        apunte.delete()
+        return redirect('apuntes_creados')
+    return render(request, 'apuntes/apuntes_creados.html')
+
+def detalle_apunte(request, apunte_id):
+    apunte = get_object_or_404(Apunte, id=apunte_id, usuario=request.user)
+    return render(request, 'apuntes/detalle_apunte.html', {'apunte':apunte})
