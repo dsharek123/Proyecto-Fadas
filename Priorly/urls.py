@@ -8,8 +8,8 @@ urlpatterns = [
     #admin
     path('admin/', admin.site.urls),
 
-    #home
-    path('home/',include('home.urls')),
+    #inicio
+    path('inicio/',include('inicio.urls')),
 
     #login
     path('',include('cuentas.urls')),
@@ -24,4 +24,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'home' / 'static')
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.BASE_DIR / 'inicio' / 'static')
