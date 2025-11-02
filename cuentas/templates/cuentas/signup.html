@@ -8,31 +8,43 @@
 <main class="container">
     <div class="row">
         <div class="col-md-4 offset-md-4 mt-5">
-            <form action="/sign/crear/" method="POST" class="card card-body" style="border-radius: 25px;" >
-                <h1 >Crear usuario</h1>
-                {{error}}
+
+            <form action="/sign/crear/" method="POST" class="card card-body" style="border-radius: 25px;">
+                <h1>Crear usuario</h1>
+
+                {% if error %}
+                    <div class="alert alert-danger text-center" style="border-radius: 10px; white-space: normal;">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
                 {% csrf_token %}
+
                 <div class="mb-3">
                     <label for="username">Nombre de usuario:</label>
-                    <input type="text" name="username" id="username" class="form-control" placeholder="Escribe tu nombre de usuario">    
+                    <input type="text" name="username" id="username" class="form-control"
+                        placeholder="Escribe tu nombre de usuario" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password1">Contraseña:</label>
-                    <input type="password" name="password1" id="password1" class="form-control" placeholder="Escribe tu contraseña">    
+                    <input type="password" name="password1" id="password1" class="form-control"
+                        placeholder="Escribe tu contraseña" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="password2">Confirma tu contraseña:</label>
-                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Confirma tu contraseña">    
+                    <input type="password" name="password2" id="password2" class="form-control"
+                        placeholder="Confirma tu contraseña" required>
                 </div>
+
                 <button class="start-button" style="background-color: #8e44ad; border-color: #8e44ad;">
                     Registrarse
                 </button>
             </form>
+
         </div>
     </div>
-
 </main>
 
 

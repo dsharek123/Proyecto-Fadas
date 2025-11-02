@@ -4,6 +4,8 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 def home(request):
     if request.user.is_authenticated:
@@ -11,7 +13,9 @@ def home(request):
     return render(request, 'cuentas/home.html')
 
 @never_cache 
+
 def signup(request):
+
     if request.user.is_authenticated:
         return redirect('inicio')
     else:
@@ -20,26 +24,40 @@ def signup(request):
                 'form': UserCreationForm
             })
         else:
-            if request.POST['password1'] ==request.POST['password2']:
-                try:
-                    user = User.objects.create_user(username = request.POST['username'],
-                    password = request.POST['password1'])
-                    user.save()
-                    login(request, user)
-                    return redirect('inicio')
-                
-                except:
-                    return render(request, 'cuentas/signup.html',{
-                        'form': UserCreationForm,
-                        'error': 'El usuario ya existe'
-                    })
-                                                    
-                                                    
-            return render(request, 'cuentas/signup.html',{
-                'form':UserCreationForm,
-                'error': "Las contraseñas no coinciden"
-                    
-            })
+            username = request.POST.get('username')
+            password1 = request.POST.get('password1')
+            password2 = request.POST.get('password2')
+
+            if password1 != password2:
+                return render(request, 'cuentas/signup.html', {
+                    'form': UserCreationForm,
+                    'error': "Las contraseñas no coinciden"
+                })
+
+            try:
+                validate_password(password1)  
+            except ValidationError as e:
+
+                return render(request, 'cuentas/signup.html', {
+                    'form': UserCreationForm,
+                    'error': e.messages  
+                })
+
+            try:
+                user = User.objects.create_user(
+                    username=username,
+                    password=password1
+                )
+                user.save()
+
+                login(request, user)
+                return redirect('inicio')
+
+            except Exception:
+                return render(request, 'cuentas/signup.html', {
+                    'form': UserCreationForm,
+                    'error': "El usuario ya existe o no se pudo crear la cuenta"
+                })
         
         
         
