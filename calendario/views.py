@@ -7,17 +7,17 @@ import datetime
 
 @login_required
 def vista_calendario(request):
-    temas_qs = Tema.objects.filter(usuario=request.user)
-    temas_list = []
-    for t in temas_qs:
+    temas_filtro = Tema.objects.filter(usuario=request.user)
+    temas_lista = []
+    for t in temas_filtro:
         if not getattr(t, 'fecha', None):
             continue
-        temas_list.append({
+        temas_lista.append({
             'id': t.id,
             'title': f'{t.tema} - {t.actividad}',
             'start': t.fecha.isoformat() if t.fecha else None,
         })
-    return render(request, 'core/calendario.html', {'temas_json': json.dumps(temas_list)})
+    return render(request, 'core/calendario.html', {'temas_json': json.dumps(temas_lista )})
 
 def nuevo_tema(request):
     if request.method == 'POST':
