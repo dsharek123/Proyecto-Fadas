@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'flashcard',
     'calendario',
     'inicio',
+    'configuraciones',
 ]
 
 MIDDLEWARE = [

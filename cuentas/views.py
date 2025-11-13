@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
+from django.contrib import messages
 
 def home(request):
     if request.user.is_authenticated:
@@ -86,3 +87,4 @@ def signin(request):
 def signout(request):
     logout(request)
     return redirect('home')
+

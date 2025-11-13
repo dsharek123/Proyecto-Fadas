@@ -1,0 +1,16 @@
+{% extends "configuracionbase.html" %}
+{% block content %}
+<div class="text-center">
+    <h1>Eliminar cuenta</h1>
+    <p class="text-light mb-4">
+        Esta acción eliminará tu cuenta de forma <strong>permanente</strong>.<br>
+        ¿Estás seguro de que deseas continuar?
+    </p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger me-3">Eliminar cuenta</button>
+        <a href="{% url 'configuraciones' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

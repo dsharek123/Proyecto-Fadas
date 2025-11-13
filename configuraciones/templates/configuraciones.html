@@ -1,0 +1,39 @@
+{% extends 'configuracionbase.html' %}
+{% block content %}
+
+<a href="{% url 'inicio' %}" class="volver-inicio">Volver al inicio</a>
+
+<div class="container text-center mt-5">
+    <h1>Selecciona una opción</h1>
+    <div class="mt-4">
+        <a href="{% url 'eliminar_cuenta' %}" class="start-button">Eliminar cuenta</a>
+    </div>
+    <div class = "mt-5">
+        <p>
+            Más opciones proximamente...
+        </p>
+    </div>
+</div>
+<style>
+.volver-inicio {
+    position: fixed;
+    top: 40px;
+    right: 25px;
+    background-color: #8e44ad;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+.volver-inicio:hover {
+    background-color: #732d91;
+    transform: translateY(-3px);
+}
+</style>
+
+{% endblock %}
