@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'calendario',
     'inicio',
     'configuraciones',
+    'sobrenosotros',
 ]
 
 MIDDLEWARE = [

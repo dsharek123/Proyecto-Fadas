@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mis Apuntes - Priorly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #0f172a;
+            color: white;
+            font-family: 'Baloo 2', sans-serif;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #a855f7;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .boton-volver {
+            display: inline-block;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+            background-color: #a855f7;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .boton-volver:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(142, 68, 173, 0.4);
+        }
+        .volver-inicio {
+            position: fixed;
+            top: 40px;
+            right: 25px;
+            background-color: #8e44ad;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+    }
+
+        .volver-inicio:hover {
+            background-color: #732d91;
+            transform: translateY(-3px);
+    }
+        .franja {
+            width: 100%;
+            background-color: #b673f6;
+            padding: 40px 20px;         
+            box-sizing: border-box;
+            margin-top: 100px;
+        }
+
+
+        .franja p {
+            color: white;
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 95%;
+            margin: 0 auto; 
+            text-align: center; 
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Sobre nosotros</h1>
+
+    <a href="{% url 'inicio' %}" class="volver-inicio">Volver al inicio</a>
+    <div class="franja">
+        <p>
+            "Equipo FADAS es un grupo de estudiantes de Ingeniería Civil Informática de la Universidad Técnica Federico Santa María. Nuestro proyecto nació de una idea simple: hacer más fácil e interactivo el aprendizaje, especialmente para quienes enfrentan dificultades al estudiar.
+Queremos que estudiar no sea solo leer y memorizar, sino también participar activamente del proceso. Por eso desarrollamos una plataforma web inclusiva, pensada para adaptarse a distintos estilos de aprendizaje. En especial, buscamos apoyar a personas con TDAH (Trastorno por Déficit de Atención e Hiperactividad).
+Nuestra plataforma combina herramientas prácticas como flashcards, apuntes y un calendario personal, diseñadas para ayudar a los usuarios a organizar su tiempo, mejorar sus hábitos de estudio y disfrutar del aprendizaje."
+        </p>
+    </div>
+
+
+</body>
+</html>

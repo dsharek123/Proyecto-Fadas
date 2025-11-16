@@ -22,6 +22,7 @@ urlpatterns = [
     path('calendario/',include('calendario.urls')),
     path('flashcard/', include('flashcard.urls')),
     path("configuraciones/", include("configuraciones.urls")),
+    path("sobrenosotros/", include("sobrenosotros.urls"))
 ]
 
 if settings.DEBUG:
