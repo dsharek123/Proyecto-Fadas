@@ -54,6 +54,24 @@
             background-color: #c0392b;
             transform: translateY(-4px);
         }
+
+        .btn-editar {
+            display: inline-block;
+            background-color: #8e44ad;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-right: 15px;
+            margin-top: 10px;
+        }
+
+        .btn-editar:hover {
+            background-color: #732d91;
+            transform: translateY(-3px);
+        }
     
     </style>
 </head>
@@ -64,6 +82,8 @@
     <h1>{{ apunte.titulo }}</h1>
     <p>{{ apunte.contenido }}</p>
     <div class="fecha">Creado el {{ apunte.creado|date:"d/m/Y H:i" }}</div>
+
+    <a href="{% url 'editar_apunte' apunte.id %}" class="btn-editar">✏️ Editar</a>
 
     <form action="{% url 'eliminar_apunte' apunte.id %}" method="post" style="display:inline;">
     {% csrf_token %}
